@@ -16,5 +16,6 @@ WechatOpener(base_driver).run()
 WechatMe(base_driver).run()
 
 # 通讯录
-WechatContact(base_driver, module_contact_info=WechatContactInfo(base_driver)).run()
+module_contact_info = WechatContactInfo(base_driver)
+WechatContact(base_driver, module_contact_info=module_contact_info).run()
 

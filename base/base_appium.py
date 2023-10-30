@@ -134,7 +134,7 @@ class BaseAppDriver(object):
         """
         self.base_driver.execute_script('mobile: startActivity', {'intent': intent})
 
-    def base_app_find_element(self, loc, timeout=5, poll_frequency=0.05):
+    def base_app_find_element(self, loc, timeout=3, poll_frequency=0.05):
         type_loc = type(loc)
         if type_loc is tuple or type_loc is str:
             wdw = WebDriverWait(self.base_driver, timeout=timeout, poll_frequency=poll_frequency)
@@ -143,7 +143,7 @@ class BaseAppDriver(object):
             elif type_loc is str:
                 return wdw.until(lambda x: x.find_element(AppiumBy.ID, loc))
 
-    def base_app_find_elements(self, loc, timeout=5, poll_frequency=0.05):
+    def base_app_find_elements(self, loc, timeout=3, poll_frequency=0.05):
         type_loc = type(loc)
         if type_loc is tuple or type_loc is str:
             wdw = WebDriverWait(self.base_driver, timeout=timeout, poll_frequency=poll_frequency)

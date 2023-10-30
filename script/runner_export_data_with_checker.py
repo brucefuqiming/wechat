@@ -1,5 +1,6 @@
 from base.base_appium import AppDriverController
 from module.wechat_contact import WechatContact
+from module.wechat_contact_checker import WechatContactChecker
 from module.wechat_contact_info import WechatContactInfo
 from module.wechat_me import WechatMe
 from module.wechat_opener import WechatOpener
@@ -16,5 +17,10 @@ WechatOpener(base_driver).run()
 WechatMe(base_driver).run()
 
 # 通讯录
-WechatContact(base_driver, module_contact_info=WechatContactInfo(base_driver)).run()
+
+module_contact_info = WechatContactInfo(base_driver)
+module_contact_checker = WechatContactChecker(base_driver)
+WechatContact(base_driver, module_contact_info=module_contact_info,
+              module_contact_checker=module_contact_checker).run()
+
 

@@ -11,6 +11,18 @@ class WechatContactInfo(BaseAppDriver):
     def click_element(element):
         element.click()
 
+    def get_remark_text(self):
+        return self.base_app_get_text("com.tencent.mm:id/cf8", timeout=1)
+
+    def get_nickname_text(self):
+        return self.base_app_get_text("com.tencent.mm:id/cf7", timeout=1)
+
+    def get_account_text(self):
+        return self.base_app_get_text("com.tencent.mm:id/cff", timeout=1)
+
+    def get_region_text(self):
+        return self.base_app_get_text("com.tencent.mm:id/cf6", timeout=1)
+
     def get_info(self):
         remark = None
         nickname = None
@@ -18,19 +30,21 @@ class WechatContactInfo(BaseAppDriver):
         region = None
 
         # 备注
+        # noinspection PyBroadException
         try:
-            remark = self.base_app_get_text("com.tencent.mm:id/cf8", timeout=1, poll_frequency=0.05)
-        except:
+            remark = self.get_remark_text()
+        except Exception:
             pass
 
         # 如果昵称不存在，那么显示名称就是昵称
         # 如果昵称存在，那么显示名称就是备注
+        # noinspection PyBroadException
         try:
-            nickname = self.base_app_get_text("com.tencent.mm:id/cf7", timeout=1, poll_frequency=0.05)
+            nickname = self.get_nickname_text()
             if nickname is not None:
                 nickname = nickname.split(':', 1)[1].strip()
 
-        except TimeoutException:
+        except Exception:
             pass
 
         if nickname is None:
@@ -38,19 +52,21 @@ class WechatContactInfo(BaseAppDriver):
             remark = None
 
         # 微信号
+        # noinspection PyBroadException
         try:
-            account = self.base_app_get_text("com.tencent.mm:id/cff", timeout=1, poll_frequency=0.05)
+            account = self.get_account_text()
             if account is not None:
                 account = account.split(':', 1)[1].strip()
-        except TimeoutException:
+        except Exception:
             pass
 
         # 地区
+        # noinspection PyBroadException
         try:
-            region = self.base_app_get_text("com.tencent.mm:id/cf6", timeout=1, poll_frequency=0.05)
+            region = self.get_region_text()
             if region is not None:
                 region = region.split(':', 1)[1].strip()
-        except TimeoutException:
+        except Exception:
             pass
 
         return {'remark': remark, 'nickname': nickname, 'account': account, 'region': region}
@@ -59,8 +75,9 @@ class WechatContactInfo(BaseAppDriver):
         # 返回
         self.base_app_press_keycode(4)
 
-    def run(self, element):
+    def run(self, element, is_send_back=True):
         self.click_element(element)
         data = self.get_info()
-        self.send_back_keycode()
+        if is_send_back:
+            self.send_back_keycode()
         return data

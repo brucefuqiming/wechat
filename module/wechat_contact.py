@@ -5,25 +5,32 @@ from module.wechat_contact_info import WechatContactInfo
 
 
 class WechatContact(BaseAppDriver):
-    def __init__(self, driver, module_contact_info: WechatContactInfo):
+    def __init__(self, driver, module_contact_info: WechatContactInfo, module_contact_checker=None):
         super().__init__(driver)
         self.contact_handler = ContactHandler()
         self.module_contact_info = module_contact_info
+        self.module_contact_checker = module_contact_checker
         self.contact_count = 0
 
     def click_contact(self):
         self.base_app_click(loc=(AppiumBy.XPATH, "(//*[@resource-id='com.tencent.mm:id/h5y'])[2]"))
+
+    def get_new_friends_location(self):
+        return self.base_app_find_element("com.tencent.mm:id/obc").location
+
+    def get_all_contact_elements(self):
+        return self.base_app_find_elements("com.tencent.mm:id/kbo")
 
     def scroll_contact(self):
         # 滑动方向：往上滑动
         # 滑动起点：当前页最后一个好友
         # 滑动终点：顶部的新的好友 位置
 
-        end_scroll_location = self.base_app_find_element("com.tencent.mm:id/obc").location
+        end_scroll_location = self.get_new_friends_location()
 
         while True:
             # 获取当前页面的所有好友
-            list_contract_el = self.base_app_find_elements("com.tencent.mm:id/kbo")
+            list_contract_el = self.get_all_contact_elements()
             if len(list_contract_el) == 0:
                 break
 
@@ -32,13 +39,17 @@ class WechatContact(BaseAppDriver):
                 # 如果为True，表示已点击过
                 if not self.contact_handler.element_is_exists(ct):
                     # 获取详细信息
-                    data = self.module_contact_info.run(ct)
+                    if self.module_contact_checker is not None:
+                        data = self.module_contact_info.run(ct, is_send_back=False)
+                        self.module_contact_checker.run()
+                    else:
+                        data = self.module_contact_info.run(ct)
+
                     # 写入
                     self.contact_handler.append_element(ct)
                     self.contact_handler.write_row(data)
                     self.contact_count += 1
                     print(data)
-                    # print(ct)
 
             # 底部最后一个好友的位置，滑动开始的地方
             start_scroll_location = list_contract_el[len(list_contract_el) - 1].location
@@ -51,7 +62,7 @@ class WechatContact(BaseAppDriver):
             if len(list_contract_el) > 3:
                 list_contract_el = list_contract_el[-3:]
 
-            scrolled_element = self.base_app_find_elements("com.tencent.mm:id/kbo")
+            scrolled_element = self.get_all_contact_elements()
             if len(scrolled_element) > 3:
                 scrolled_element = scrolled_element[-3:]
 
