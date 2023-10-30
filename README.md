@@ -51,6 +51,12 @@ git clone https://github.com/Fly1st/wechat
 python -m venv venv
 ````
 
+* 切换虚拟环境
+
+````cmd
+call .\venv\Scripts\activate.bat
+````
+
 * 还原依赖
 
 ````cmd
