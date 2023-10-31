@@ -2,7 +2,8 @@ from script.run import main as script_run
 from script.run_with_checker import main as script_run_with_checker
 
 print("")
-print("## WeChat Tools\n")
+print("## WeChat Tools")
+print("## Version: v1.1-20231031\n")
 print("## MADE BY FLY1ST")
 print("## avb@live.com\n")
 print("## 该程序完全免费，已开源到Github")
