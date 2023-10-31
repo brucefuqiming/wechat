@@ -1,19 +1,14 @@
 # 微信工具
 
-> 适用于 Android 微信中文版本：8.0.42
+> 基于 appium 框架编写，适用于 Android 微信中文版本：8.0.42
+>
+> 仅用于技术研究
 
 ## 已完成功能
 
 * 导出通讯录信息
 * 检测单向联系人
 * 标记联系人状态
-
-
-## 开发中功能
-
-* 删除单向联系人
-* 统计联系人信息
-* 更多 ...
 
 ## 运行环境
 
@@ -59,7 +54,7 @@ appium
 * 下载或克隆项目
 
 ````cmd
-git clone https://github.com/Fly1st/wechat
+git clone https://github.com/Fly1st/wechat-appium
 ````
 
 * 进入项目根目录创建虚拟环境
