@@ -1,10 +1,15 @@
 import os
+import sys
 import time
 
 
 class BaseSetting(object):
     def __init__(self):
-        self.root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        if getattr(sys, 'frozen', False):
+            self.root_dir = os.getcwd()
+        else:
+            self.root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
         self.workspace_dir = self.mk_dir(os.path.join(self.root_dir, "workspace"))
         self.contact_dir = self.mk_dir(os.path.join(self.workspace_dir, "contact"))
         self.current_contact_path = os.path.join(self.contact_dir, f'contact_{int(time.time())}.csv')

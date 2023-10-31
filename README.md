@@ -1,29 +1,29 @@
 # 微信工具
 
-> 适用于 Android 微信版本：8.0.42
+> 适用于 Android 微信中文版本：8.0.42
 
 ## 已完成功能
 
-* 导出所有通讯录信息到csv
-  * 包括 备注，昵称，微信号，地区
+* 导出通讯录信息
+* 检测单向联系人
+* 标记联系人状态
 
 
 ## 开发中功能
 
-* 检测单向联系人
 * 删除单向联系人
-* 标记异常联系人
 * 统计联系人信息
+* 更多 ...
 
 ## 运行环境
 
 * 安装 [nodejs](https://nodejs.org/en)
 
-* 下载 [adb](https://pan.baidu.com/s/10x3DJ9sTevTyZLOUYuA7dg?pwd=5fvb) 工具包并添加到系统环境变量
+* 添加 [adb](https://pan.baidu.com/s/10x3DJ9sTevTyZLOUYuA7dg?pwd=5fvb) 到系统环境变量
 
-* 安装 [python 3.10](https://www.python.org/downloads/)
+* 安装 [python](https://www.python.org/downloads/) 3.10
 
-* 安装 [java](https://www.oracle.com/java/technologies/downloads/) 运行环境
+* 安装 [java](https://www.oracle.com/java/technologies/downloads/) 运行环境，并添加 JAVA_HOME 的环境变量
 
 * 从nodejs 中安装 appium
 
@@ -37,7 +37,24 @@ npm i --location=global appium
 appium driver install uiautomator2
 ````
 
-## 安装
+## 快速使用
+
+* 从 [Release ](https://github.com/Fly1st/wechat/releases)中下载最新版本的可执行文件
+* 使用 adb 连接手机至能看到手机列表
+
+````cmd
+adb devices
+````
+
+* 启动 appium 服务
+
+````cmd
+appium
+````
+
+* 运行可执行文件
+
+## 手动安装
 
 * 下载或克隆项目
 
@@ -55,6 +72,7 @@ python -m venv venv
 
 ````cmd
 call .\venv\Scripts\activate.bat
+set PYTHONPATH=.
 ````
 
 * 还原依赖
@@ -63,13 +81,13 @@ call .\venv\Scripts\activate.bat
 pip install -r requirements.txt
 ````
 
-* 使用 adb 连接手机至 adb devices 能看到手机列表
+* 使用 adb 连接手机至能看到手机列表
 
 ````cmd
 adb devices
 ````
 
-* 启动 appium 服务器
+* 启动 appium 服务
 
 ````cmd
 appium
@@ -78,14 +96,22 @@ appium
 * 运行程序
 
 ````cmd
-python run.py
+python .\script\run.py
+python .\script\run_with_checker.py
 ````
 
-* 在项目跟文件夹创建一个批处理方便下次运行
+* 在项目根目录创建一个批处理方便下次运行 (Windows)
 
 ````cmd
 call .\venv\Scripts\activate.bat
-python run.py
+set PYTHONPATH=.
+python .\script\run.py
 pause
 ````
+
+## 注意事项
+
+* adb 建议用有线，无线模式延迟可能会更高
+* run.py 只会收集联系人的基础信息，速度更快
+* run_checker.py 会同时检测好友的状态，速度更慢
 

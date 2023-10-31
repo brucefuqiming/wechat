@@ -1,5 +1,4 @@
 import csv
-
 from common.base_setting import BaseSetting
 
 
@@ -9,7 +8,7 @@ class ContactHandler(object):
         self.current_contact_path = BaseSetting().current_contact_path
         print(f"# 通讯录保存路径: {self.current_contact_path}")
         # csv header
-        self.header = ['remark', 'nickname', 'account', 'region']
+        self.header = ['remark', 'nickname', 'account', 'region', 'name', 'state', 'desc']
         # 文件流
         self.file_stream = None
         self.csv_writer = None
@@ -33,7 +32,8 @@ class ContactHandler(object):
         :param data:
         :return:
         """
-        self.csv_writer.writerow(data)
+        if data is not None and not all(value is None for value in data.values()):
+            self.csv_writer.writerow(data)
 
     def close_stream(self):
         """

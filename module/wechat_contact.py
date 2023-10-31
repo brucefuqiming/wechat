@@ -7,21 +7,41 @@ from module.wechat_contact_info import WechatContactInfo
 class WechatContact(BaseAppDriver):
     def __init__(self, driver, module_contact_info: WechatContactInfo, module_contact_checker=None):
         super().__init__(driver)
+        # 联系人处理程序
         self.contact_handler = ContactHandler()
+        # 联系人信息模块
         self.module_contact_info = module_contact_info
+        # 联系人检查器模块
         self.module_contact_checker = module_contact_checker
+        # 用于记录总数
         self.contact_count = 0
 
     def click_contact(self):
+        """
+        点击联系人
+        :return:
+        """
         self.base_app_click(loc=(AppiumBy.XPATH, "(//*[@resource-id='com.tencent.mm:id/h5y'])[2]"))
 
     def get_new_friends_location(self):
+        """
+        获取"新的朋友"位置
+        :return:
+        """
         return self.base_app_find_element("com.tencent.mm:id/obc").location
 
     def get_all_contact_elements(self):
+        """
+        获取当前页所有好友节点
+        :return:
+        """
         return self.base_app_find_elements("com.tencent.mm:id/kbo")
 
     def scroll_contact(self):
+        """
+        滑动好友列表
+        :return:
+        """
         # 滑动方向：往上滑动
         # 滑动起点：当前页最后一个好友
         # 滑动终点：顶部的新的好友 位置
@@ -41,7 +61,9 @@ class WechatContact(BaseAppDriver):
                     # 获取详细信息
                     if self.module_contact_checker is not None:
                         data = self.module_contact_info.run(ct, is_send_back=False)
-                        self.module_contact_checker.run()
+                        data_check = self.module_contact_checker.run()
+                        if data_check is not None:
+                            data = {**data, **data_check}
                     else:
                         data = self.module_contact_info.run(ct)
 

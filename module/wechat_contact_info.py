@@ -9,18 +9,39 @@ class WechatContactInfo(BaseAppDriver):
 
     @staticmethod
     def click_element(element):
+        """
+        点击当前节点
+        :param element:
+        :return:
+        """
         element.click()
 
     def get_remark_text(self):
+        """
+        获取备注信息
+        :return:
+        """
         return self.base_app_get_text("com.tencent.mm:id/cf8", timeout=1)
 
     def get_nickname_text(self):
+        """
+        获取昵称
+        :return:
+        """
         return self.base_app_get_text("com.tencent.mm:id/cf7", timeout=1)
 
     def get_account_text(self):
+        """
+        获取账号
+        :return:
+        """
         return self.base_app_get_text("com.tencent.mm:id/cff", timeout=1)
 
     def get_region_text(self):
+        """
+        获取地区
+        :return:
+        """
         return self.base_app_get_text("com.tencent.mm:id/cf6", timeout=1)
 
     def get_info(self):
