@@ -37,6 +37,13 @@ class WechatContact(BaseAppDriver):
         """
         return self.base_app_find_elements("com.tencent.mm:id/kbo")
 
+    def get_bottom_exists(self):
+        # noinspection PyBroadException
+        try:
+            return self.base_app_find_element("com.tencent.mm:id/cak", timeout=0.2)
+        except Exception:
+            pass
+
     def scroll_contact(self):
         """
         滑动好友列表
@@ -73,23 +80,16 @@ class WechatContact(BaseAppDriver):
                     self.contact_count += 1
                     print(data)
 
+            # 判断到底
+            if self.get_bottom_exists() is not None:
+                break
+
             # 底部最后一个好友的位置，滑动开始的地方
             start_scroll_location = list_contract_el[len(list_contract_el) - 1].location
 
             # 开始滑动
             self.base_driver.swipe(start_scroll_location['x'], start_scroll_location['y'],
                                    end_scroll_location['x'], end_scroll_location['y'], 2500)
-
-            # 判断是否到底，对比最后三项联系人
-            if len(list_contract_el) > 3:
-                list_contract_el = list_contract_el[-3:]
-
-            scrolled_element = self.get_all_contact_elements()
-            if len(scrolled_element) > 3:
-                scrolled_element = scrolled_element[-3:]
-
-            if list_contract_el == scrolled_element:
-                break
 
         print(f"一共 {self.contact_count}条数据")
 
