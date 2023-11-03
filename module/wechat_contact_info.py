@@ -1,9 +1,7 @@
-from selenium.common import TimeoutException
-
-from base.base_appium import BaseAppDriver
+from base.base_appium import AppDriverBase
 
 
-class WechatContactInfo(BaseAppDriver):
+class WechatContactInfo(AppDriverBase):
     def __init__(self, driver):
         super().__init__(driver)
 

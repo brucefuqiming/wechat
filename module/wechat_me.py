@@ -1,8 +1,8 @@
 from appium.webdriver.common.appiumby import AppiumBy
-from base.base_appium import BaseAppDriver
+from base.base_appium import AppDriverBase
 
 
-class WechatMe(BaseAppDriver):
+class WechatMe(AppDriverBase):
 
     def __init__(self, driver):
         super().__init__(driver)

@@ -1,10 +1,10 @@
 from appium.webdriver.common.appiumby import AppiumBy
-from base.base_appium import BaseAppDriver
+from base.base_appium import AppDriverBase
 from common.contact_handler import ContactHandler
 from module.wechat_contact_info import WechatContactInfo
 
 
-class WechatContact(BaseAppDriver):
+class WechatContact(AppDriverBase):
     def __init__(self, driver, module_contact_info: WechatContactInfo, module_contact_checker=None):
         super().__init__(driver)
         # 联系人处理程序

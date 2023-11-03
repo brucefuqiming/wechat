@@ -4,7 +4,7 @@
       Coder：落叶
       EMail：avb@live.com
      Github：https://github.com/Fly1st
-     Latest：2023.10.30
+     Latest：2023.11.03
 ******************************************************************************************
 """
 from appium import webdriver
@@ -53,7 +53,7 @@ class AppDriverController(object):
             self.base_driver = None
 
 
-class BaseAppDriver(object):
+class AppDriverBase(object):
     def __init__(self, driver):
         self.base_driver = driver
 

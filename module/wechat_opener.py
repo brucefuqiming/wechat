@@ -1,7 +1,7 @@
-from base.base_appium import BaseAppDriver
+from base.base_appium import AppDriverBase
 
 
-class WechatOpener(BaseAppDriver):
+class WechatOpener(AppDriverBase):
     def __init__(self, driver):
         super().__init__(driver)
 

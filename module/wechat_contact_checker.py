@@ -1,10 +1,10 @@
 import re
 from time import sleep
 from appium.webdriver.common.appiumby import AppiumBy
-from base.base_appium import BaseAppDriver
+from base.base_appium import AppDriverBase
 
 
-class WechatContactChecker(BaseAppDriver):
+class WechatContactChecker(AppDriverBase):
     def __init__(self, driver):
         super().__init__(driver)
 
