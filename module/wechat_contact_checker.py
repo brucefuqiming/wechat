@@ -180,22 +180,19 @@ class WechatContactChecker(AppDriverBase):
         try:
             self.click_plus()
         except Exception:
-            self.send_back(1)
-            self.click_contact()
+            self.send_back(2)
             return
 
         # noinspection PyBroadException
         try:
             self.click_transfer()
         except Exception:
-            self.send_back(2)
-            self.click_contact()
+            self.send_back(3)
             return
 
         sleep(0.1)
         result = self.get_transfer_info()
-        self.send_back(4)
-        self.click_contact()
+        self.send_back(5)
 
         code = result['state']
 
