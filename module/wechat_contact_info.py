@@ -19,28 +19,28 @@ class WechatContactInfo(AppDriverBase):
         获取备注信息
         :return:
         """
-        return self.base_app_get_text("com.tencent.mm:id/cf8", timeout=1)
+        return self.base_get_text("com.tencent.mm:id/cf8", timeout=1)
 
     def get_nickname_text(self):
         """
         获取昵称
         :return:
         """
-        return self.base_app_get_text("com.tencent.mm:id/cf7", timeout=1)
+        return self.base_get_text("com.tencent.mm:id/cf7", timeout=1)
 
     def get_account_text(self):
         """
         获取账号
         :return:
         """
-        return self.base_app_get_text("com.tencent.mm:id/cff", timeout=1)
+        return self.base_get_text("com.tencent.mm:id/cff", timeout=1)
 
     def get_region_text(self):
         """
         获取地区
         :return:
         """
-        return self.base_app_get_text("com.tencent.mm:id/cf6", timeout=1)
+        return self.base_get_text("com.tencent.mm:id/cf6", timeout=1)
 
     def get_info(self):
         remark = None
@@ -92,7 +92,7 @@ class WechatContactInfo(AppDriverBase):
 
     def send_back_keycode(self):
         # 返回
-        self.base_app_press_keycode(4)
+        self.base_press_keycode(4)
 
     def run(self, element, is_send_back=True):
         self.click_element(element)

@@ -21,26 +21,26 @@ class WechatContact(AppDriverBase):
         点击联系人
         :return:
         """
-        self.base_app_click(loc=(AppiumBy.XPATH, "(//*[@resource-id='com.tencent.mm:id/h5y'])[2]"))
+        self.base_click(loc=(AppiumBy.XPATH, "(//*[@resource-id='com.tencent.mm:id/h5y'])[2]"))
 
     def get_new_friends_location(self):
         """
         获取"新的朋友"位置
         :return:
         """
-        return self.base_app_find_element("com.tencent.mm:id/obc").location
+        return self.base_find_element("com.tencent.mm:id/obc").location
 
     def get_all_contact_elements(self):
         """
         获取当前页所有好友节点
         :return:
         """
-        return self.base_app_find_elements("com.tencent.mm:id/kbo")
+        return self.base_find_elements("com.tencent.mm:id/kbo")
 
     def get_bottom_exists(self):
         # noinspection PyBroadException
         try:
-            return self.base_app_find_element("com.tencent.mm:id/cak", timeout=0.2)
+            return self.base_find_element("com.tencent.mm:id/cak", timeout=0.2)
         except Exception:
             pass
 

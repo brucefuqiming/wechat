@@ -8,13 +8,13 @@ class WechatMe(AppDriverBase):
         super().__init__(driver)
 
     def click_me(self):
-        self.base_app_click(loc=(AppiumBy.XPATH, "(//*[@resource-id='com.tencent.mm:id/h5y'])[4]"))
+        self.base_click(loc=(AppiumBy.XPATH, "(//*[@resource-id='com.tencent.mm:id/h5y'])[4]"))
 
     def get_nickname_text(self):
-        return self.base_app_get_text("com.tencent.mm:id/kbb")
+        return self.base_get_text("com.tencent.mm:id/kbb")
 
     def get_account_text(self):
-        return self.base_app_get_text("com.tencent.mm:id/ouv")
+        return self.base_get_text("com.tencent.mm:id/ouv")
 
     def run(self):
         print("# 获取微信信息")

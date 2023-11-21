@@ -11,6 +11,6 @@ class WechatOpener(AppDriverBase):
         print("## avb@live.com")
         print("## https://github.com/Fly1st\n")
         print("# 启动微信\n")
-        self.base_app_terminate_app("com.tencent.mm")
-        self.base_app_start_activity("com.tencent.mm/com.tencent.mm.ui.LauncherUI")
+        self.base_terminate_app("com.tencent.mm")
+        self.base_start_activity("com.tencent.mm/com.tencent.mm.ui.LauncherUI")
 

@@ -13,21 +13,21 @@ class WechatContactChecker(AppDriverBase):
         点击通讯录
         :return:
         """
-        self.base_app_click(loc=(AppiumBy.XPATH, "(//*[@resource-id='com.tencent.mm:id/h5y'])[2]"))
+        self.base_click(loc=(AppiumBy.XPATH, "(//*[@resource-id='com.tencent.mm:id/h5y'])[2]"))
 
     def click_send_msg(self):
         """
         点击发送消息
         :return:
         """
-        self.base_app_click(loc=(AppiumBy.XPATH, "(//*[@resource-id='com.tencent.mm:id/h5n'])[1]"), timeout=1)
+        self.base_click(loc=(AppiumBy.XPATH, "(//*[@resource-id='com.tencent.mm:id/h5n'])[1]"), timeout=1)
 
     def click_plus(self):
         """
         点击加号
         :return:
         """
-        self.base_app_click("com.tencent.mm:id/bqn", timeout=1)
+        self.base_click("com.tencent.mm:id/bqn", timeout=1)
 
     def click_transfer(self):
         """
@@ -37,7 +37,7 @@ class WechatContactChecker(AppDriverBase):
         # self.base_app_click(
         #     loc=(AppiumBy.XPATH, "(//*[@resource-id='com.tencent.mm:id/a1u']/android.widget.LinearLayout)[6]"),
         #     timeout=1)
-        self.base_app_click(loc=(AppiumBy.XPATH, "//*[@resource-id='com.tencent.mm:id/a12' and @text='转账']"),
+        self.base_click(loc=(AppiumBy.XPATH, "//*[@resource-id='com.tencent.mm:id/a12' and @text='转账']"),
                             timeout=1)
 
     def get_transfer_title_text(self):
@@ -45,7 +45,7 @@ class WechatContactChecker(AppDriverBase):
         获取转账页面的名称信息
         :return:
         """
-        return self.base_app_get_text("com.tencent.mm:id/lwo")
+        return self.base_get_text("com.tencent.mm:id/lwo")
 
     def input_amount(self):
         """
@@ -53,37 +53,37 @@ class WechatContactChecker(AppDriverBase):
         :return:
         """
         # 0.1
-        self.base_app_click("com.tencent.mm:id/hqb")
-        self.base_app_click("com.tencent.mm:id/hqz")
-        self.base_app_click("com.tencent.mm:id/hqc")
+        self.base_click("com.tencent.mm:id/hqb")
+        self.base_click("com.tencent.mm:id/hqz")
+        self.base_click("com.tencent.mm:id/hqc")
 
     def click_pay(self):
         """
         支付页面点击转账
         :return:
         """
-        self.base_app_click("com.tencent.mm:id/hql")
+        self.base_click("com.tencent.mm:id/hql")
 
     def get_pay_error_result_text(self):
         """
         支付页面转账失败提示文字
         :return:
         """
-        return self.base_app_get_text("com.tencent.mm:id/jlg")
+        return self.base_get_text("com.tencent.mm:id/jlg")
 
     def click_pay_i_know(self):
         """
         支付页面转账失败，点击"我知道了"
         :return:
         """
-        self.base_app_click("com.tencent.mm:id/jln")
+        self.base_click("com.tencent.mm:id/jln")
 
     def get_pay_success_button_element(self):
         """
         获取支付页面 支付节点
         :return:
         """
-        return self.base_app_find_element(loc=(AppiumBy.XPATH, "//android.widget.TextView[@text='支付']"),
+        return self.base_find_element(loc=(AppiumBy.XPATH, "//android.widget.TextView[@text='支付']"),
                                           timeout=3)
 
     def parse_transfer_title(self):
@@ -165,7 +165,7 @@ class WechatContactChecker(AppDriverBase):
         :return:
         """
         for i in range(0, back_count):
-            self.base_app_press_keycode(4)
+            self.base_press_keycode(4)
 
     def run(self):
 
