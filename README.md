@@ -110,3 +110,26 @@ pause
 * run.py 只会收集联系人的基础信息，速度更快
 * run_checker.py 会同时检测好友的状态，速度更慢
 
+
+
+---------------------------------------------
+其他
+
+* 需要[node 18.17](https://nodejs.org/dist/v18.17.0/)以上
+* 需要[java 17](https://www.oracle.com/java/technologies/downloads/#jdk17-mac)以上
+* 下载[android sdk](https://dl-ssl.google.com/android/repository/android-21_r01.zip)、platform-tools、build-tools，参考[下载Android SDK tools完成Android SDK 安装、配置环境变量](https://cloud.tencent.com/developer/article/2107040)、[AndroidDevTools](https://www.androiddevtools.cn/)，必要情况下可能需要从官网安装Android开发工具套件或[命令行工具](https://developer.android.com/studio?hl=zh-tw#command-tools)
+* 将sdk、build-tools、platform-tools放在同一目录下，同时把build-tools中的/lib/apksigner.jar拷贝到根目录下，
+<img width="608" alt="image" src="https://github.com/brucefuqiming/wechat/assets/11450222/4704cde8-26f3-4541-b37f-959f789a0b63">
+
+* 配置环境变量(.bash_profile)如下所示：
+```
+export ANDROID_SDK_ROOT=/Users/xxx/android-5.0
+export ANDROID_PLATFORM_TOOLS=/Users/xxx/android-5.0/platform-tools
+export ANDROID_BUILD_TOOLS=/Users/brucefu/xxx/android-5.0/build-tools
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
+```
+配置完成后记得source ~/.bash_profile
+
+* mac下，将run.py和run_with_checker.py拷贝到根目录下运行
+
+* 小米手机，在开发者模式中“关闭MIUI优化”
